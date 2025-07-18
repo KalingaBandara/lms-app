@@ -97,7 +97,7 @@ exports.deleteCourse = async (req, res) => {
       return res.status(404).json({ message: "Course not found" });
     }
 
-    res.status(200).json({ message: "Course deleted successfully" , deletedCourse});
+    res.status(204).json({ message: "Course deleted successfully" , deletedCourse});
 
     logger.info("deleteCourse endpoint hit");
 

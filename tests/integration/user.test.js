@@ -195,7 +195,7 @@ describe("DELETE /api/users/:id", () => {
         const res = await request(app)
         .delete(`/api/users/${userId}`);
 
-        expect(res.statusCode).toBe(200);
+        expect(res.statusCode).toBe(204);
         expect(res.body).not.toBeEmpty;
         expect(res.body.deletedUser._id).toBe(userId);
         expect(res.body.deletedUser.name).toBe("testUser");
