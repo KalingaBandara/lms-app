@@ -102,7 +102,7 @@ exports.deleteUser = async (req, res) => {
     if (!deletedUser) {
       return res.status(404).send({ message: "User not found" });
     }
-    res.status(204).send({ message: "User deleted successfully" , deletedUser});
+    res.status(200).send({ message: "User deleted successfully" , deletedUser});
     logger.info("deleteUser endpoint hit");
 
   } catch (error) {

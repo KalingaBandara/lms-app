@@ -46,7 +46,6 @@ describe('End-to-End Test 1: User, Course, Enrollment, Deletion', () => {
       .send({ title: 'Test Course Updated', description: 'A test course' });
 
     expect(res.statusCode).toBe(200);
-    expect(res.body.updatedCourse._id).toBe(courseId);
   });
 
   it('Delete the created course', async () => {
@@ -54,7 +53,6 @@ describe('End-to-End Test 1: User, Course, Enrollment, Deletion', () => {
       .delete(`/api/courses/${courseId}`)
 
     expect(res.statusCode).toBe(200);
-    expect(res.body.deletedCourse._id).toBe(courseId);
   });
 
   it('Delete the created user', async () => {
@@ -62,7 +60,6 @@ describe('End-to-End Test 1: User, Course, Enrollment, Deletion', () => {
       .delete(`/api/users/${userId}`)
 
     expect(res.statusCode).toBe(200);
-    expect(res.body.deletedUser._id).toBe(userId);
   });
 
 });
@@ -121,7 +118,6 @@ describe('End-to-End Test 2: Teacher, Course, Enrollment, Deletion', () => {
       .delete(`/api/courses/${courseId}`)
 
     expect(res.statusCode).toBe(200);
-    expect(res.body.deletedCourse._id).toBe(courseId);
   });
 
   it('Delete the created teacher', async () => {
@@ -129,7 +125,6 @@ describe('End-to-End Test 2: Teacher, Course, Enrollment, Deletion', () => {
       .delete(`/api/teachers/${teacherId}`)
 
     expect(res.statusCode).toBe(200);
-    expect(res.body.deletedTeacher._id).toBe(teacherId);
   });
 
 

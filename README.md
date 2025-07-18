@@ -59,3 +59,8 @@ npm run test:e2e
 ```bash
 npm run docker:up
 ```
+
+## To run all Tests:
+```bash
+npm run test
+```

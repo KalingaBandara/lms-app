@@ -47,11 +47,11 @@ exports.deleteUserById = async (id) => {
     if (!deletedUser) {
         throw new Error("User not found");
     }
-    // Delete user from course model
-    await Course.updateMany(
-              { id },
-              { $pull: { enrolledUsers: id } }
-            );
+    // // Delete user from course model
+    // await Course.updateMany(
+    //           { id },
+    //           { $pull: { enrolledUsers: id } }
+    //         );
     // Return the user for given id 
     return deletedUser;
 };

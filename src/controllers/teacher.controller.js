@@ -100,7 +100,7 @@ exports.deleteTeacher = async (req, res) => {
     if (!deletedTeacher) {
       return res.status(404).json({ message: "Teacher not found" });
     }
-    res.status(204).json({ message: "Teacher deleted successfully" ,deletedTeacher});
+    res.status(200).json({ message: "Teacher deleted successfully" ,deletedTeacher});
     logger.info("deleteTeacher endpoint hit");
   } catch (error) {
     res
