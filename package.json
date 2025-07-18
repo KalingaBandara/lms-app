@@ -5,7 +5,13 @@
   "scripts": {
     "test": "jest --runInBand ./test",
     "start": "node src/server.js",
-    "start:dev": "cross-env NODE_ENV=development nodemon src/server.js"
+    "start:dev": "nodemon src/server.js",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "test:unit": "jest tests/unit --verbose",
+    "test:integration": "jest tests/integration --verbose",
+    "test:e2e": "NODE_ENV=test docker compose up --build -d && jest tests/e2e --verbose && NODE_ENV=test docker compose down"
+    
   },
   "keywords": [],
   "author": "",
