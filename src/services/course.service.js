@@ -3,11 +3,6 @@ const User = require("../models/user.model");
 const Teacher = require("../models/teacher.model");
 
 exports.createCourse = async ({ title, description }) => {
-    // Check if course exists
-    const existingCourse = await Course.findOne({ title });
-    if (existingCourse) {
-        throw new Error("Course already exists");
-    }
 
     // Create and return the course
     return await Course.create({ title, description });
@@ -22,6 +17,10 @@ exports.fetchCourses = async () => {
 };
 
 exports.fetchCourseById = async (id) => {
+
+    if (!id) {
+        throw new Error("CourseId is required");
+    }
     // Check if course exists
     const course = await Course.findById(id)
         .populate("enrolledTeachers", "name email")
@@ -34,6 +33,9 @@ exports.fetchCourseById = async (id) => {
 };
 
 exports.updateCourseById = async ( id, updatedData ) => {
+    if (!id) {
+        throw new Error("CourseId is required");
+    }
     const updatedCourse = await Course.findByIdAndUpdate(
         id,
         updatedData,
@@ -48,6 +50,9 @@ exports.updateCourseById = async ( id, updatedData ) => {
 };
 
 exports.deleteCourseById = async (id) => {
+    if (!id) {
+        throw new Error("CourseId is required");
+    }
     // Check if course exists
     const deletedCourse = await Course.findByIdAndDelete(id);
     if (!deletedCourse) {
@@ -68,6 +73,14 @@ exports.deleteCourseById = async (id) => {
 };
 
 exports.userEnrollCourseByIds = async (courseId, userId) => {
+    if (!courseId) {
+        throw new Error("CourseId is required");
+    }  
+
+    if (!userId) {
+        throw new Error("userId is required");
+    }
+
     const enrolledCourse = await Course.findById(courseId);
     if (!enrolledCourse) {
       throw new Error("Course not found");
@@ -94,6 +107,14 @@ exports.userEnrollCourseByIds = async (courseId, userId) => {
 };
 
 exports.userUnenrollCourseByIds = async (courseId, userId) => {
+    if (!courseId) {
+        throw new Error("CourseId is required");
+    }  
+
+    if (!userId) {
+        throw new Error("userId is required");
+    }
+  
     const unenrolledCourse = await Course.findById(courseId);
     if (!unenrolledCourse) {
       throw new Error("Course not found");
@@ -120,6 +141,14 @@ exports.userUnenrollCourseByIds = async (courseId, userId) => {
 };
 
 exports.teacherEnrollCourseByIds = async (courseId, teacherId) => {
+    if (!courseId) {
+        throw new Error("CourseId is required");
+    }  
+
+    if (!teacherId) {
+        throw new Error("teacherId is required");
+    }  
+  
     const enrolledCourse = await Course.findById(courseId);
     if (!enrolledCourse) {
       throw new Error("Course not found");
@@ -146,6 +175,13 @@ exports.teacherEnrollCourseByIds = async (courseId, teacherId) => {
 };
 
 exports.teacherUnenrollCourseByIds = async (courseId, teacherId) => {
+    if (!courseId) {
+        throw new Error("CourseId is required");
+    }  
+
+    if (!teacherId) {
+        throw new Error("teacherId is required");
+    }
     const unenrolledCourse = await Course.findById(courseId);
     if (!unenrolledCourse) {
       throw new Error("Course not found");

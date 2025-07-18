@@ -1,0 +1,167 @@
+2025-07-17T07:30:57.609Z [31merror[39m: Teacher validation failed: name: Name is required
+2025-07-17T07:30:57.624Z [31merror[39m: Teacher validation failed: email: Email is required
+2025-07-17T07:30:57.645Z [31merror[39m: Name already exists
+2025-07-17T07:30:57.670Z [31merror[39m: Teacher not found
+2025-07-17T07:36:46.065Z [31merror[39m: Teacher validation failed: name: Name is required
+2025-07-17T07:36:46.076Z [31merror[39m: Teacher validation failed: email: Email is required
+2025-07-17T07:36:46.093Z [31merror[39m: Name already exists
+2025-07-17T07:36:46.136Z [31merror[39m: Teacher not found
+2025-07-17T09:00:07.178Z [31merror[39m: Operation `users.find()` buffering timed out after 10000ms
+2025-07-17T09:01:25.764Z [31merror[39m: Operation `users.find()` buffering timed out after 10000ms
+2025-07-17T09:07:40.441Z [31merror[39m: Operation `users.find()` buffering timed out after 10000ms
+2025-07-17T09:11:44.430Z [31merror[39m: Operation `users.find()` buffering timed out after 10000ms
+2025-07-17T15:58:24.849Z [31merror[39m: Name already exists
+2025-07-17T15:58:24.920Z [31merror[39m: Email already exists
+2025-07-17T15:58:25.045Z [31merror[39m: Teacher not found
+2025-07-17T15:59:21.069Z [31merror[39m: Name already exists
+2025-07-17T15:59:21.152Z [31merror[39m: Email already exists
+2025-07-17T15:59:21.284Z [31merror[39m: Teacher not found
+2025-07-17T16:00:56.921Z [31merror[39m: Name already exists
+2025-07-17T16:00:56.993Z [31merror[39m: Email already exists
+2025-07-17T16:00:57.119Z [31merror[39m: Teacher not found
+2025-07-17T16:01:01.005Z [31merror[39m: Name already exists
+2025-07-17T16:01:01.072Z [31merror[39m: Email already exists
+2025-07-17T16:02:49.052Z [31merror[39m: Name already exists
+2025-07-17T16:02:49.140Z [31merror[39m: Email already exists
+2025-07-17T16:02:49.266Z [31merror[39m: Teacher not found
+2025-07-17T16:02:50.830Z [31merror[39m: Name already exists
+2025-07-17T16:02:50.896Z [31merror[39m: Email already exists
+2025-07-17T16:04:52.207Z [31merror[39m: Operation `users.insertOne()` buffering timed out after 10000ms
+2025-07-17T16:05:03.787Z [31merror[39m: Name already exists
+2025-07-17T16:05:03.817Z [31merror[39m: Email already exists
+2025-07-17T16:05:03.870Z [31merror[39m: Teacher not found
+2025-07-17T16:05:05.524Z [31merror[39m: Name already exists
+2025-07-17T16:05:05.553Z [31merror[39m: Email already exists
+2025-07-17T16:10:28.198Z [31merror[39m: Name already exists
+2025-07-17T16:10:28.274Z [31merror[39m: Email already exists
+2025-07-17T16:10:30.306Z [31merror[39m: Name already exists
+2025-07-17T16:10:30.364Z [31merror[39m: Email already exists
+2025-07-17T16:10:30.470Z [31merror[39m: Teacher not found
+2025-07-17T16:25:23.690Z [31merror[39m: Name already exists
+2025-07-17T16:25:23.782Z [31merror[39m: Email already exists
+2025-07-17T16:25:25.742Z [31merror[39m: Name already exists
+2025-07-17T16:25:25.801Z [31merror[39m: Email already exists
+2025-07-17T16:25:25.933Z [31merror[39m: Teacher not found
+2025-07-18T06:50:07.426Z [32minfo[39m: createCourse endpoint hit
+2025-07-18T06:50:07.547Z [32minfo[39m: createCourse endpoint hit
+2025-07-18T06:50:07.571Z [31merror[39m: Title already exists
+2025-07-18T06:50:07.697Z [32minfo[39m: getAllCourses endpoint hit
+2025-07-18T06:50:07.795Z [32minfo[39m: getAllCourses endpoint hit
+2025-07-18T06:50:07.868Z [32minfo[39m: getCourseById endpoint hit
+2025-07-18T06:50:07.916Z [31merror[39m: Course not found
+2025-07-18T06:50:07.962Z [32minfo[39m: updateCourse endpoint hit
+2025-07-18T06:50:08.035Z [32minfo[39m: deleteCourse endpoint hit
+2025-07-18T06:50:08.102Z [32minfo[39m: userEnrollCourse endpoint hit
+2025-07-18T06:50:08.208Z [32minfo[39m: userUnenrollCourse endpoint hit
+2025-07-18T06:50:08.305Z [32minfo[39m: teacherEnrollCourse endpoint hit
+2025-07-18T06:50:08.450Z [32minfo[39m: teacherUnenrollCourse endpoint hit
+2025-07-18T06:50:10.171Z [32minfo[39m: createTeacher endpoint hit
+2025-07-18T06:50:10.332Z [32minfo[39m: createTeacher endpoint hit
+2025-07-18T06:50:10.368Z [31merror[39m: Name already exists
+2025-07-18T06:50:10.409Z [32minfo[39m: createuser endpoint hit
+2025-07-18T06:50:10.438Z [31merror[39m: Email already exists
+2025-07-18T06:50:10.585Z [32minfo[39m: getAllTeachers endpoint hit
+2025-07-18T06:50:10.641Z [32minfo[39m: getAllTeachers endpoint hit
+2025-07-18T06:50:10.697Z [32minfo[39m: getTeacherById endpoint hit
+2025-07-18T06:50:10.737Z [31merror[39m: Teacher not found
+2025-07-18T06:50:10.808Z [32minfo[39m: updateTeacher endpoint hit
+2025-07-18T06:50:10.891Z [32minfo[39m: deleteTeacher endpoint hit
+2025-07-18T06:50:10.963Z [32minfo[39m: getTeacherProfile endpoint hit
+2025-07-18T06:50:12.480Z [32minfo[39m: createuser endpoint hit
+2025-07-18T06:50:12.628Z [32minfo[39m: createuser endpoint hit
+2025-07-18T06:50:12.644Z [31merror[39m: Name already exists
+2025-07-18T06:50:12.683Z [32minfo[39m: createuser endpoint hit
+2025-07-18T06:50:12.707Z [31merror[39m: Email already exists
+2025-07-18T06:50:12.861Z [32minfo[39m: getAllUsers endpoint hit
+2025-07-18T06:50:12.904Z [32minfo[39m: getAllUsers endpoint hit
+2025-07-18T06:50:12.965Z [32minfo[39m: getUserById endpoint hit
+2025-07-18T06:50:13.001Z [31merror[39m: User not found
+2025-07-18T06:50:13.078Z [32minfo[39m: updateUser endpoint hit
+2025-07-18T06:50:13.136Z [32minfo[39m: deleteUser endpoint hit
+2025-07-18T06:50:13.203Z [32minfo[39m: getUserProfile endpoint hit
+2025-07-18T07:01:14.214Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:15.465Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:17.143Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:18.824Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:18.933Z [32minfo[39m: createuser endpoint hit
+2025-07-18T07:01:19.038Z [32minfo[39m: createuser endpoint hit
+2025-07-18T07:01:19.051Z [31merror[39m: Name already exists
+2025-07-18T07:01:19.068Z [32minfo[39m: createuser endpoint hit
+2025-07-18T07:01:19.078Z [31merror[39m: Email already exists
+2025-07-18T07:01:19.137Z [32minfo[39m: getAllUsers endpoint hit
+2025-07-18T07:01:19.161Z [32minfo[39m: getAllUsers endpoint hit
+2025-07-18T07:01:19.193Z [32minfo[39m: getUserById endpoint hit
+2025-07-18T07:01:19.211Z [31merror[39m: User not found
+2025-07-18T07:01:19.238Z [32minfo[39m: updateUser endpoint hit
+2025-07-18T07:01:19.261Z [32minfo[39m: deleteUser endpoint hit
+2025-07-18T07:01:19.284Z [32minfo[39m: getUserProfile endpoint hit
+2025-07-18T07:01:20.746Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:20.917Z [32minfo[39m: createTeacher endpoint hit
+2025-07-18T07:01:21.011Z [32minfo[39m: createTeacher endpoint hit
+2025-07-18T07:01:21.033Z [31merror[39m: Name already exists
+2025-07-18T07:01:21.051Z [32minfo[39m: createuser endpoint hit
+2025-07-18T07:01:21.062Z [31merror[39m: Email already exists
+2025-07-18T07:01:21.121Z [32minfo[39m: getAllTeachers endpoint hit
+2025-07-18T07:01:21.158Z [32minfo[39m: getAllTeachers endpoint hit
+2025-07-18T07:01:21.208Z [32minfo[39m: getTeacherById endpoint hit
+2025-07-18T07:01:21.230Z [31merror[39m: Teacher not found
+2025-07-18T07:01:21.292Z [32minfo[39m: updateTeacher endpoint hit
+2025-07-18T07:01:21.371Z [32minfo[39m: deleteTeacher endpoint hit
+2025-07-18T07:01:21.449Z [32minfo[39m: getTeacherProfile endpoint hit
+2025-07-18T07:01:22.728Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:22.855Z [32minfo[39m: createCourse endpoint hit
+2025-07-18T07:01:22.934Z [32minfo[39m: createCourse endpoint hit
+2025-07-18T07:01:22.947Z [31merror[39m: Title already exists
+2025-07-18T07:01:22.990Z [32minfo[39m: getAllCourses endpoint hit
+2025-07-18T07:01:23.020Z [32minfo[39m: getAllCourses endpoint hit
+2025-07-18T07:01:23.040Z [32minfo[39m: getCourseById endpoint hit
+2025-07-18T07:01:23.057Z [31merror[39m: Course not found
+2025-07-18T07:01:23.074Z [32minfo[39m: updateCourse endpoint hit
+2025-07-18T07:01:23.126Z [32minfo[39m: deleteCourse endpoint hit
+2025-07-18T07:01:23.165Z [32minfo[39m: userEnrollCourse endpoint hit
+2025-07-18T07:01:23.218Z [32minfo[39m: userUnenrollCourse endpoint hit
+2025-07-18T07:01:23.258Z [32minfo[39m: teacherEnrollCourse endpoint hit
+2025-07-18T07:01:23.298Z [32minfo[39m: teacherUnenrollCourse endpoint hit
+2025-07-18T07:01:53.123Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:53.290Z [32minfo[39m: createTeacher endpoint hit
+2025-07-18T07:01:53.416Z [32minfo[39m: createTeacher endpoint hit
+2025-07-18T07:01:53.461Z [31merror[39m: Name already exists
+2025-07-18T07:01:53.500Z [32minfo[39m: createuser endpoint hit
+2025-07-18T07:01:53.534Z [31merror[39m: Email already exists
+2025-07-18T07:01:53.658Z [32minfo[39m: getAllTeachers endpoint hit
+2025-07-18T07:01:53.729Z [32minfo[39m: getAllTeachers endpoint hit
+2025-07-18T07:01:53.782Z [32minfo[39m: getTeacherById endpoint hit
+2025-07-18T07:01:53.813Z [31merror[39m: Teacher not found
+2025-07-18T07:01:53.873Z [32minfo[39m: updateTeacher endpoint hit
+2025-07-18T07:01:53.915Z [32minfo[39m: deleteTeacher endpoint hit
+2025-07-18T07:01:53.996Z [32minfo[39m: getTeacherProfile endpoint hit
+2025-07-18T07:01:55.183Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:55.303Z [32minfo[39m: createCourse endpoint hit
+2025-07-18T07:01:55.388Z [32minfo[39m: createCourse endpoint hit
+2025-07-18T07:01:55.428Z [31merror[39m: Title already exists
+2025-07-18T07:01:55.576Z [32minfo[39m: getAllCourses endpoint hit
+2025-07-18T07:01:55.669Z [32minfo[39m: getAllCourses endpoint hit
+2025-07-18T07:01:55.733Z [32minfo[39m: getCourseById endpoint hit
+2025-07-18T07:01:55.777Z [31merror[39m: Course not found
+2025-07-18T07:01:55.812Z [32minfo[39m: updateCourse endpoint hit
+2025-07-18T07:01:55.900Z [32minfo[39m: deleteCourse endpoint hit
+2025-07-18T07:01:55.979Z [32minfo[39m: userEnrollCourse endpoint hit
+2025-07-18T07:01:56.101Z [32minfo[39m: userUnenrollCourse endpoint hit
+2025-07-18T07:01:56.181Z [32minfo[39m: teacherEnrollCourse endpoint hit
+2025-07-18T07:01:56.261Z [32minfo[39m: teacherUnenrollCourse endpoint hit
+2025-07-18T07:01:57.565Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:01:57.649Z [32minfo[39m: createuser endpoint hit
+2025-07-18T07:01:57.754Z [32minfo[39m: createuser endpoint hit
+2025-07-18T07:01:57.784Z [31merror[39m: Name already exists
+2025-07-18T07:01:57.830Z [32minfo[39m: createuser endpoint hit
+2025-07-18T07:01:57.855Z [31merror[39m: Email already exists
+2025-07-18T07:01:57.981Z [32minfo[39m: getAllUsers endpoint hit
+2025-07-18T07:01:58.034Z [32minfo[39m: getAllUsers endpoint hit
+2025-07-18T07:01:58.087Z [32minfo[39m: getUserById endpoint hit
+2025-07-18T07:01:58.109Z [31merror[39m: User not found
+2025-07-18T07:01:58.170Z [32minfo[39m: updateUser endpoint hit
+2025-07-18T07:01:58.251Z [32minfo[39m: deleteUser endpoint hit
+2025-07-18T07:01:58.322Z [32minfo[39m: getUserProfile endpoint hit
+2025-07-18T07:01:59.399Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:02:00.817Z [32minfo[39m: Using in-memory mongoDB URI
+2025-07-18T07:02:02.125Z [32minfo[39m: Using in-memory mongoDB URI

@@ -1,4 +1,5 @@
 const Teacher = require("../models/teacher.model");
+const Course = require("../models/course.model");
 
 exports.createTeacher = async ({ name, email }) => {
     // Check if teacher exists
@@ -55,6 +56,12 @@ exports.deleteTeacherById = async (id) => {
     }
     // Check if user exists
     const deletedTeacher = await Teacher.findByIdAndDelete(id);
+
+    await Course.updateMany(
+              { id },
+              { $pull: { enrolledTeachers: id } }
+            );
+
     if (!deletedTeacher) {
         throw new Error("Teacher not found");
     }

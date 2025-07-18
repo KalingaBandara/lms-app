@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
-const dbHandler = require('./db-handler.js');
-const app = require("../src/app.js");
+const dbHandler = require('../in-memory-db-handler.js');
+const app = require("../../src/app.js");
 
 // const courseService = require('../src/services/course.service');
-const User = require('../src/models/user.model');
+const User = require('../../src/models/user.model.js');
 
 /**
  * Connect to a new in-memory database before running any tests.
@@ -29,6 +29,8 @@ describe("POST /api/users", () => {
         
         expect(res.statusCode).toBe(201);
         expect(res.body).toHaveProperty("_id");
+        expect(res.body.name).toBe("Test User");
+        expect(res.body.email).toBe("test@gmail.com");
     });
 
     it("should handle empty user name", async () => {
@@ -36,7 +38,7 @@ describe("POST /api/users", () => {
         .post("/api/users")
         .send({ name: "", email: "test@gmail.com" });
         
-        expect(res.statusCode).toBe(400);
+        expect(res.statusCode).toBe(422);
     });
 
     it("should handle empty user email", async () => {
@@ -44,10 +46,10 @@ describe("POST /api/users", () => {
         .post("/api/users")
         .send({ name: "testUser", email: "" });
         
-        expect(res.statusCode).toBe(400);
+        expect(res.statusCode).toBe(422);
     });
 
-     it("should handle duplicate user name", async () => {
+    it("should handle duplicate user name", async () => {
         await request(app)
         .post("/api/users")
         .send({ name: "testUser", email: "test@gmail.com" });
@@ -71,11 +73,34 @@ describe("POST /api/users", () => {
         expect(res2.statusCode).toBe(400);
     });
 
+    it("should validate request body to have name and email only", async () => {
+        const res = await request(app)
+        .post("/api/users")
+        .send({ name: "testUser", email: "test@gmail.com", age:15 });
+        
+        expect(res.statusCode).toBe(422);
+    });
+
+    it("should validate name to have at least 3 characters", async () => {
+        const res = await request(app)
+        .post("/api/users")
+        .send({ name: "ab", email: "test@gmail.com" });
+        
+        expect(res.statusCode).toBe(422);
+    });
+
+    it("should validate email", async () => {
+        const res = await request(app)
+        .post("/api/users")
+        .send({ name: "testUser", email: "test.com" });
+        
+        expect(res.statusCode).toBe(422);
+    });
     
 });
 
 describe("GET /api/users", () => {
-    it("should fetch list of users", async () => {
+    it("should fetch empty list of users when no user is added", async () => {
         // await request(app)
         // .post("/api/users")
         // .send({ name: "testUser", email: "test@gmail.com" });
@@ -84,8 +109,27 @@ describe("GET /api/users", () => {
         .get("/api/users")
         expect(res.statusCode).toBe(200);
         expect(res.body).not.toBeEmpty;
+        expect(res.body).toEqual([]);
         expect(res.body).toBeInstanceOf(Array);
+    });
 
+    it("should fetch list of users when users present", async () => {
+        
+        await User.create({ name: "testUser", email: "test@gmail.com" });
+
+        const res = await request(app)
+        .get("/api/users")
+        expect(res.statusCode).toBe(200);
+        expect(res.body).not.toBeEmpty;
+        expect(res.body).toBeInstanceOf(Array);
+        expect(res.body).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({
+            name: "testUser",
+            email: "test@gmail.com"
+            })
+        ])
+);
 
     });
 });
@@ -132,12 +176,47 @@ describe("PUT /api/users/:id", () => {
         .put(`/api/users/${userId}`)
         .send({ name: "testUser2", email: "test@gmail.com" });
 
-        console.log(res);
-
         expect(res.statusCode).toBe(200);
         expect(res.body).not.toBeEmpty;
         expect(res.body.updatedUser._id).toBe(userId);
 
+        const updated = await User.findById(userId);
+        expect(updated.name).toBe("testUser2");
+
     });
 });
 
+describe("DELETE /api/users/:id", () => {
+    it("should delete the user", async () => {
+        
+        const testUser = await User.create({ name: "testUser", email: "test@gmail.com" });
+        const userId = testUser._id.toString();
+
+        const res = await request(app)
+        .delete(`/api/users/${userId}`);
+
+        expect(res.statusCode).toBe(200);
+        expect(res.body).not.toBeEmpty;
+        expect(res.body.deletedUser._id).toBe(userId);
+        expect(res.body.deletedUser.name).toBe("testUser");
+        expect(res.body.deletedUser.email).toBe("test@gmail.com");
+
+        const deleted = await User.findById(userId);
+        expect(deleted).toBeNull();
+    });
+});
+
+describe("GET /api/users/profile/:id", () => {
+    it("should fetch the user profile correspoding to given ID", async () => {
+      
+        const testUser = await User.create({ name: "testUser", email: "test@gmail.com" });
+        const userId = testUser._id.toString();
+
+        const res = await request(app)
+        .get(`/api/users/profile/${userId}`)
+        expect(res.statusCode).toBe(200);
+        expect(res.body).not.toBeEmpty;
+        expect(res.body._id).toBe(userId);
+
+    });
+});

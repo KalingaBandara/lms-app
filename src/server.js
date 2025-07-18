@@ -1,16 +1,30 @@
-// require("dotenv").config();
-const mongoose = require("mongoose");
 const app = require("./app");
-const connectDB = require("../config/db");
 const config = require("config")
+const logger = require('./logger');
 
-// Connect to database
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+    try {
+        const mongoURI = config.get("db.uri");
+
+        logger.info(mongoURI);
+        await mongoose.connect(mongoURI)
+
+        logger.info("Connected to DB",mongoURI);
+
+    } catch (err) {
+        logger.error("Internal Server Error");
+        process.exit(1);
+    }
+};
+
 connectDB();
 
 // Start server
-// const PORT = process.env.PORT || 3000;
 const PORT = config.get("app.port") || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    logger.info(`Server running on port ${PORT}`);
+
 });

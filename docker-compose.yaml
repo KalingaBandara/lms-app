@@ -15,11 +15,9 @@ services:
     ports:
     - 3000:3000
     environment:
-      NODE_ENV: production
-      PORT: 3000
-      MONGODB_URI: mongodb://mongodb:27017/test
+      - NODE_ENV=${NODE_ENV}
     volumes: 
-      - app-logs:/usr/src/app/
+      - app-logs:/usr/src/app/logs
     depends_on:
       - mongodb
 volumes:

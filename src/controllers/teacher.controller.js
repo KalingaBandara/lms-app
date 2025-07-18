@@ -1,4 +1,3 @@
-const Teacher = require("../models/teacher.model");
 const teacherService = require("../services/teacher.service")
 const logger = require('../logger');
 
@@ -10,6 +9,8 @@ exports.createTeacher = async (req, res) => {
         const newTeacher = await teacherService.createTeacher({ name, email });
 
         res.status(201).json(newTeacher);
+
+        logger.info("createTeacher endpoint hit");
 
     } catch (error) {
 
@@ -35,13 +36,11 @@ exports.createTeacher = async (req, res) => {
 exports.getAllTeachers = async (req, res) => {
     try {
         const allTeachers = await teacherService.fetchTeachers();
-                res.status(200).send(allTeachers);
+        res.status(200).send(allTeachers);
+        logger.info("getAllTeachers endpoint hit");
     } catch (error) {
-        var statusCode = 500;
-        if (error.message === "User not found") {
-            statusCode = 404;}
         res
-          .status(statusCode)
+          .status(500)
           .json({message: "Failed to fetch teachers", error: error.message });
         logger.error(error);
     }
@@ -52,6 +51,7 @@ exports.getTeacherById = async (req,res) => {
     try {
         const teacher = await teacherService.fetchTeacherById(req.params.id);
         res.status(200).json(teacher);
+        logger.info("getTeacherById endpoint hit");
     } catch (error) {
         var statusCode = 500;
         if (error.message === "Teacher not found") {
@@ -81,6 +81,7 @@ exports.updateTeacher = async (req, res) => {
             const updatedTeacher = await teacherService.updateTeacherById(teacherId,updatedData);
     
             res.status(200).json({ message: "Teacher updated successfully", updatedTeacher });
+        logger.info("updateTeacher endpoint hit");
     
         } catch (error) {
             const statusCode = error.message === ("Teacher not found") ? 404 : 500;
@@ -99,11 +100,13 @@ exports.deleteTeacher = async (req, res) => {
     if (!deletedTeacher) {
       return res.status(404).json({ message: "Teacher not found" });
     }
-    res.status(200).json({ message: "Teacher deleted successfully" });
+    res.status(200).json({ message: "Teacher deleted successfully" ,deletedTeacher});
+    logger.info("deleteTeacher endpoint hit");
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to delete teacher", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -116,9 +119,12 @@ exports.getProfile = async (req, res) => {
     }
 
     res.status(200).json(teacherProfile);
+
+    logger.info("getTeacherProfile endpoint hit");
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to fetch profile", error: error.message });
+    logger.error(error);
   }
 };

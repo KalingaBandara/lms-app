@@ -8,8 +8,8 @@ const logger = createLogger({
     format.printf(({ timestamp, level, message }) => `${timestamp} ${level}: ${message}`)
   ),
   transports: [
-    new transports.Console(),
-    new transports.File({ filename: 'app.log' })
+    // new transports.Console(),
+    new transports.File({ filename: 'logs/app.log' })
   ]
 });
 

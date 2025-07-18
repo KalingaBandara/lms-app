@@ -1,11 +1,7 @@
 const User = require("../models/user.model");
+const Course = require("../models/course.model");
 
 exports.createUser = async ({ name, email }) => {
-    // Check if user exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-        throw new Error("User already exists");
-    }
 
     // Create and return the user
     return await User.create({ name, email });
@@ -18,10 +14,6 @@ exports.fetchUsers = async () => {
 };
 
 exports.fetchUserById = async (id) => {
-
-    if (!id) {
-        throw new Error("UserId is required");
-    }
     
     // Check if user exists
     const user = await User.findById(id);
@@ -34,11 +26,7 @@ exports.fetchUserById = async (id) => {
 };
 
 exports.updateUserById = async ( id, updatedData ) => {
-    
-    if (!id) {
-        throw new Error("UserId is required");
-    }
-    
+
     const updatedUser = await User.findByIdAndUpdate(
         id,
         updatedData,
@@ -54,23 +42,21 @@ exports.updateUserById = async ( id, updatedData ) => {
 
 exports.deleteUserById = async (id) => {
     
-    if (!id) {
-        throw new Error("UserId is required");
-    }
-    
     // Check if user exists
     const deletedUser = await User.findByIdAndDelete(id);
     if (!deletedUser) {
         throw new Error("User not found");
     }
+    // Delete user from course model
+    await Course.updateMany(
+              { id },
+              { $pull: { enrolledUsers: id } }
+            );
     // Return the user for given id 
     return deletedUser;
 };
 
 exports.fetchUserProfileById = async (id) => {
-    if (!id) {
-        throw new Error("UserId is required");
-    }
     
     const userProfile = await User.findById(id)
       .populate("enrolledCourses", "title description");

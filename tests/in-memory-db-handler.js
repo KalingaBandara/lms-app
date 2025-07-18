@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require("mongodb-memory-server");
+const logger = require('../src/logger');
 
-// const mongoServer = new MongoMemoryServer();
 let mongoServer
 /**
  * Connect to the in-memory database.
@@ -10,7 +10,7 @@ module.exports.connect = async () => {
     mongoServer = await MongoMemoryServer.create();
     const uri = await mongoServer.getUri();
 
-    console.log("Using in-memory mongoDB URI", uri);
+    logger.info("Using in-memory mongoDB URI", uri);
     const mongooseOpts = {
         serverSelectionTimeoutMS: 5000,
     };

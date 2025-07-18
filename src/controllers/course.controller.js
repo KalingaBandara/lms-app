@@ -1,24 +1,27 @@
-const Course = require("../models/course.model");
-const User = require("../models/user.model");
-const Teacher = require("../models/teacher.model");
-
 const courseService = require("../services/course.service");
-const userService = require("../services/user.service");
-const teacherService = require("../services/teacher.service");
-
+const logger = require('../logger');
 
 // Create a new course
 exports.createCourse = async (req, res) => {
   try {
     const { title, description } = req.body;
     
-            const newCourse = await courseService.createCourse({ title, description });
-    
-            res.status(201).json(newCourse);
+    const newCourse = await courseService.createCourse({ title, description });
+
+    res.status(201).json(newCourse);
+
+    logger.info("createCourse endpoint hit");
+
   } catch (error) {
+    var statusCode;
+        if (error.message === "Title already exists" ||
+            "Title is required") {
+            statusCode = 400;
+        }
     res
-      .status(500)
+      .status(statusCode)
       .json({ message: "Failed to create course", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -26,11 +29,13 @@ exports.createCourse = async (req, res) => {
 exports.getAllCourses = async (req,res) => {
   try {
     const allCourses = await courseService.fetchCourses();
-            res.status(200).json(allCourses);
+    res.status(200).json(allCourses);
+    logger.info("getAllCourses endpoint hit");
   } catch (error){
     res 
       .status(500)
       .json({message: "failed to fetch courses", error: error.message});
+    logger.error(error);
   }
 };
 
@@ -39,7 +44,7 @@ exports.getCourseById = async (req, res) => {
   try 
   {
     const course = await courseService.fetchCourseById(req.params.id);
-    
+    logger.info("getCourseById endpoint hit");
 
     if (!course) {
       return res.status(404).json({message: "Course not found" });
@@ -47,9 +52,15 @@ exports.getCourseById = async (req, res) => {
 
     res.status(200).json(course);
   } catch (error) {
+    var statusCode = 500;
+    if (error.message === "Course not found") {
+        statusCode = 404;
+    };
+
     res
-      .status(500)
+      .status(statusCode)
       .json({message: "Failed to fetch course", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -58,6 +69,8 @@ exports.updateCourse = async (req, res) => {
   try {
     const courseId = req.params.id;
     const updatedData = req.body;
+
+    logger.info("updateCourse endpoint hit");
 
     if (!courseId) {
             return res.status(400).json({ message: "Course ID is required" })
@@ -71,6 +84,7 @@ exports.updateCourse = async (req, res) => {
     res.
       status(500)
       .json({ message: "Failed to update course", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -83,11 +97,15 @@ exports.deleteCourse = async (req, res) => {
       return res.status(404).json({ message: "Course not found" });
     }
 
-    res.status(200).json({ message: "Course deleted successfully" });
+    res.status(200).json({ message: "Course deleted successfully" , deletedCourse});
+
+    logger.info("deleteCourse endpoint hit");
+
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to delete course", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -101,11 +119,13 @@ exports.userEnrollCourse = async (req, res) => {
     const enrolledCourse = await courseService.userEnrollCourseByIds(courseId,userId);
     
     res.status(200).json({ message: "Enrolled in course successfully", enrolledCourse });
+    logger.info("userEnrollCourse endpoint hit");
 
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to enroll in course", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -115,14 +135,16 @@ exports.userUnenrollCourse = async (req, res) => {
     const courseId = req.params.courseId;
     const userId = req.params.userId;
 
-    await courseService.userUnenrollCourseByIds(courseId,userId);
+    const unenrolledCourse = await courseService.userUnenrollCourseByIds(courseId,userId);
     
-    res.status(200).json({ message: "Unenrolled in course successfully" });
+    res.status(200).json({ message: "Unenrolled in course successfully" , unenrolledCourse});
+    logger.info("userUnenrollCourse endpoint hit");
 
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to unenroll in course", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -135,11 +157,13 @@ exports.teacherEnrollCourse = async (req, res) => {
     const enrolledCourse = await courseService.teacherEnrollCourseByIds(courseId,teacherId);
     
     res.status(200).json({ message: "Enrolled in course successfully", enrolledCourse });
+    logger.info("teacherEnrollCourse endpoint hit");
 
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to enroll in course", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -149,13 +173,15 @@ exports.teacherUnenrollCourse = async (req, res) => {
     const courseId = req.params.courseId;
     const teacherId = req.params.teacherId;
 
-    await courseService.teacherUnenrollCourseByIds(courseId,teacherId);
+    const unenrolledCourse = await courseService.teacherUnenrollCourseByIds(courseId,teacherId);
     
-    res.status(200).json({ message: "Unenrolled in course successfully" });
+    res.status(200).json({ message: "Unenrolled in course successfully", unenrolledCourse});
+    logger.info("teacherUnenrollCourse endpoint hit");
 
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to unenroll in course", error: error.message });
+    logger.error(error);
   }
 };

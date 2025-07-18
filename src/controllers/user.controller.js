@@ -1,5 +1,5 @@
-const User = require("../models/user.model");
 const userService = require("../services/user.service");
+const logger = require('../logger');
 
 // Create a new user
 exports.createUser = async (req, res) => {
@@ -7,6 +7,8 @@ exports.createUser = async (req, res) => {
         const { name, email } = req.body;
 
         const newUser = await userService.createUser({ name, email });
+
+        logger.info("createuser endpoint hit");
 
         res.status(201).json(newUser);
 
@@ -34,13 +36,12 @@ exports.getAllUsers = async (req, res) => {
     try {
         const allUsers = await userService.fetchUsers();
         res.status(200).send(allUsers);
+        logger.info("getAllUsers endpoint hit");
+
 
     } catch (error) {
-        var statusCode = 500;
-        if (error.message === "User not found") {
-            statusCode = 404;}
         res
-            .status(statusCode)
+            .status(500)
             .json({
                 message: "Failed to fetch users", error: error.message 
             });
@@ -54,17 +55,17 @@ exports.getUserById = async (req,res) => {
     try {
         const user = await userService.fetchUserById(req.params.id);
         res.status(200).send(user);
+        logger.info("getUserById endpoint hit");
+
     } catch (error) {
         var statusCode = 500;
         if (error.message === "User not found") {
             statusCode = 404;
-        };
-        if (error.message === "UserId is required") {
-            statusCode = 400;
-        }                
+        };               
         res
             .status(statusCode)
-            .json({ message: "Failed to fetch user", error: error.message });            
+            .json({ message: "Failed to fetch user", error: error.message }); 
+        logger.error(error);           
     }
 };
 
@@ -80,6 +81,8 @@ exports.updateUser = async (req, res) => {
 
         const updatedUser = await userService.updateUserById(userId,updatedData);
 
+        logger.info("updateUser endpoint hit");
+
         res.status(200).json({ message: "User updated successfully", updatedUser });
 
     } catch (error) {
@@ -88,6 +91,7 @@ exports.updateUser = async (req, res) => {
         res
             .status(statusCode)
             .json({ message: "Failed to update user", error: error.message });
+        logger.error(error);
     }
 };
 
@@ -98,11 +102,14 @@ exports.deleteUser = async (req, res) => {
     if (!deletedUser) {
       return res.status(404).send({ message: "User not found" });
     }
-    res.status(200).send({ message: "User deleted successfully" });
+    res.status(200).send({ message: "User deleted successfully" , deletedUser});
+    logger.info("deleteUser endpoint hit");
+
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to delete user", error: error.message });
+    logger.error(error);
   }
 };
 
@@ -116,9 +123,12 @@ exports.getProfile = async (req, res) => {
     }
 
     res.status(200).json(userProfile);
+    logger.info("getUserProfile endpoint hit");
+
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to fetch profile", error: error.message });
+    logger.error(error);
   }
 };
